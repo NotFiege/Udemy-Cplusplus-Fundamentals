@@ -3,5 +3,8 @@
 
 int main ()
 {
-    InitWindow(1920, 1080, "Eddie's Window");
+
+    int width = 350;
+    InitWindow(width, 100, "Eddie's Window");
+
 }
