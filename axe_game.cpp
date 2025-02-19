@@ -5,11 +5,14 @@ int main ()
 {
 
     int width = 350;
-    InitWindow(width, 100, "Eddie's Window");
+    int length = 200;
+    InitWindow(width, length, "Eddie's Window");
 
-    while(true)
+    while(WindowShouldClose() == false)
     {
-        
+        BeginDrawing();
+        ClearBackground(RED);
+        EndDrawing();
     }
 
 }
