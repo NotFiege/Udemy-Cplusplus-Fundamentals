@@ -39,8 +39,11 @@ int main ()
 
     SetTargetFPS(60);
     
-    bool collision_with_axe = true;
-
+    bool collision_with_axe =
+        (b_axe_y >= u_circle_y) && 
+        (u_axe_y <= b_circle_y) && 
+        (r_axe_x >= l_circle_x) && 
+        (l_axe_x <= r_circle_x);
 
     while(WindowShouldClose() == false)
     {
@@ -55,6 +58,26 @@ int main ()
         else
         {
             // Game Logic Begins
+
+            // Update The Edges
+
+            l_circle_x = circle_x - circle_radius;
+            r_circle_x = circle_x + circle_radius;
+            u_circle_y = circle_y - circle_radius;
+            b_circle_y = circle_y + circle_radius;
+
+            l_axe_x = axe_x;
+            r_axe_x = axe_x + axe_length;
+            u_axe_y = axe_y;
+            b_axe_y = axe_y + axe_length;
+
+            // Update Collision With Axe
+
+            collision_with_axe =
+                (b_axe_y >= u_circle_y) && 
+                (u_axe_y <= b_circle_y) && 
+                (r_axe_x >= l_circle_x) && 
+                (l_axe_x <= r_circle_x);
 
             DrawCircle(circle_x, circle_y, circle_radius, BLUE);
             DrawRectangle(axe_x, axe_y, axe_length, axe_length, RED);
@@ -72,7 +95,7 @@ int main ()
             // Moving The Axe
 
             axe_y += direction;
-            if (axe_y > height || axe_y < 0)
+            if (axe_y > length || axe_y < 0)
             {
                 direction = -direction;
             }
